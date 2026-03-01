@@ -1,0 +1,11 @@
+SJS:
+  Neos:
+    MCP:
+      server:
+        # configuration for the default server
+        mcp:
+          featureSets:
+            workspace: \SJS\Neos\MCP\FeatureSet\Neos\WorkspaceFeatureSet
+            flow: \SJS\Neos\MCP\FeatureSet\Neos\FlowFeatureSet
+            dimension: \SJS\Neos\MCP\FeatureSet\Neos\DimensionFeatureSet
+            # asset: \SJS\Neos\MCP\FeatureSet\Neos\AssetFeatureSet
