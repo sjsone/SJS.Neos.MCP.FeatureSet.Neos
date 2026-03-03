@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SJS\Neos\MCP\FeatureSet\Neos;
 
-use SJS\Neos\MCP\FeatureSet\AbstractFeatureSet;
+use SJS\Flow\MCP\FeatureSet\AbstractFeatureSet;
 use SJS\Neos\MCP\FeatureSet\Neos\DimensionFeatureSet\ListDimensionCombinationsTool;
 use SJS\Neos\MCP\FeatureSet\Neos\DimensionFeatureSet\ListDimensionsTool;
 

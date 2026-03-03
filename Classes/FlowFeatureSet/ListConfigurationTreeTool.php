@@ -7,11 +7,11 @@ namespace SJS\Neos\MCP\FeatureSet\Neos\FlowFeatureSet;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Configuration\ConfigurationManager;
 use Neos\Flow\Mvc\ActionRequest;
-use SJS\Neos\MCP\Domain\MCP\Tool;
-use SJS\Neos\MCP\Domain\MCP\Tool\Annotations;
-use SJS\Neos\MCP\Domain\MCP\Tool\Content;
-use SJS\Neos\MCP\JsonSchema\ObjectSchema;
-use SJS\Neos\MCP\JsonSchema\StringSchema;
+use SJS\Flow\MCP\Domain\MCP\Tool;
+use SJS\Flow\MCP\Domain\MCP\Tool\Annotations;
+use SJS\Flow\MCP\Domain\MCP\Tool\Content;
+use SJS\Flow\MCP\JsonSchema\ObjectSchema;
+use SJS\Flow\MCP\JsonSchema\StringSchema;
 
 class ListConfigurationTreeTool extends Tool
 {

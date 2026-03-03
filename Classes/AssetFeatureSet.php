@@ -12,11 +12,11 @@ use Neos\Media\Domain\Repository\AssetCollectionRepository;
 use Neos\Media\Domain\Repository\AssetRepository;
 use Neos\Media\Domain\Repository\TagRepository;
 use Psr\Log\LoggerInterface;
-use SJS\Neos\MCP\Domain\Client\Request\Completion\CompleteRequest\Argument;
-use SJS\Neos\MCP\Domain\Client\Request\Completion\CompleteRequest\Ref;
-use SJS\Neos\MCP\Domain\MCP\Completion;
+use SJS\Flow\MCP\Domain\Client\Request\Completion\CompleteRequest\Argument;
+use SJS\Flow\MCP\Domain\Client\Request\Completion\CompleteRequest\Ref;
+use SJS\Flow\MCP\Domain\MCP\Completion;
 use SJS\Neos\MCP\Domain\MCP\Resource;
-use SJS\Neos\MCP\FeatureSet\AbstractFeatureSet;
+use SJS\Flow\MCP\FeatureSet\AbstractFeatureSet;
 
 #[Flow\Scope("singleton")]
 class AssetFeatureSet extends AbstractFeatureSet

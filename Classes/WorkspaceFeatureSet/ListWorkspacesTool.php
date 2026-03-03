@@ -9,10 +9,10 @@ use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\ActionRequest;
 use Neos\Neos\Domain\Repository\WorkspaceMetadataAndRoleRepository;
 use Neos\Neos\FrontendRouting\SiteDetection\SiteDetectionResult;
-use SJS\Neos\MCP\Domain\MCP\Tool;
-use SJS\Neos\MCP\Domain\MCP\Tool\Annotations;
-use SJS\Neos\MCP\Domain\MCP\Tool\Content;
-use SJS\Neos\MCP\JsonSchema\ObjectSchema;
+use SJS\Flow\MCP\Domain\MCP\Tool;
+use SJS\Flow\MCP\Domain\MCP\Tool\Annotations;
+use SJS\Flow\MCP\Domain\MCP\Tool\Content;
+use SJS\Flow\MCP\JsonSchema\ObjectSchema;
 
 
 class ListWorkspacesTool extends Tool

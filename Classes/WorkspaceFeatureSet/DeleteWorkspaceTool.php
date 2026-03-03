@@ -10,10 +10,10 @@ use Neos\Flow\Mvc\ActionRequest;
 use Neos\Neos\Domain\Service\WorkspaceService;
 use Neos\Neos\FrontendRouting\SiteDetection\SiteDetectionResult;
 use Psr\Log\LoggerInterface;
-use SJS\Neos\MCP\Domain\MCP\Tool;
-use SJS\Neos\MCP\Domain\MCP\Tool\Annotations;
-use SJS\Neos\MCP\JsonSchema\ObjectSchema;
-use SJS\Neos\MCP\JsonSchema\StringSchema;
+use SJS\Flow\MCP\Domain\MCP\Tool;
+use SJS\Flow\MCP\Domain\MCP\Tool\Annotations;
+use SJS\Flow\MCP\JsonSchema\ObjectSchema;
+use SJS\Flow\MCP\JsonSchema\StringSchema;
 
 
 class DeleteWorkspaceTool extends Tool
