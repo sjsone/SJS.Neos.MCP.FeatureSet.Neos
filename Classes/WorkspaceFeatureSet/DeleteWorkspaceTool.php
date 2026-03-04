@@ -38,9 +38,14 @@ class DeleteWorkspaceTool extends Tool
             )
         );
     }
+
+    /**
+     * @param array<string,mixed> $input
+     * @return array{message: string, status: string}
+     */
     public function run(ActionRequest $actionRequest, array $input)
     {
-        $workspaceName = $input["name"];
+        $workspaceName = $this->retrieveName($input);
 
         $siteDetection = SiteDetectionResult::fromRequest($actionRequest->getHttpRequest());
 
@@ -53,5 +58,14 @@ class DeleteWorkspaceTool extends Tool
             'status' => 'success',
             'message' => "Workspace '{$workspaceName}' deleted successfully",
         ];
+    }
+
+    /**
+     * @param array<string,mixed> $input
+     */
+    public function retrieveName(array $input): string
+    {
+        $name = $input["name"];
+        return $name;
     }
 }

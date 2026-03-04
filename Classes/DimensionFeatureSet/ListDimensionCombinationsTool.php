@@ -31,6 +31,9 @@ class ListDimensionCombinationsTool extends Tool
         );
     }
 
+    /**
+     * @param array<string,mixed> $input
+     */
     public function run(ActionRequest $actionRequest, array $input): Content
     {
         $siteDetection = SiteDetectionResult::fromRequest($actionRequest->getHttpRequest());
@@ -43,6 +46,6 @@ class ListDimensionCombinationsTool extends Tool
             $combinations[$point->hash] = $point->coordinates;
         }
 
-        return Content::structured($combinations)->addText(json_encode($combinations));
+        return Content::structuredWithFallback($combinations);
     }
 }

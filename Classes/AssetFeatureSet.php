@@ -15,7 +15,7 @@ use Psr\Log\LoggerInterface;
 use SJS\Flow\MCP\Domain\Client\Request\Completion\CompleteRequest\Argument;
 use SJS\Flow\MCP\Domain\Client\Request\Completion\CompleteRequest\Ref;
 use SJS\Flow\MCP\Domain\MCP\Completion;
-use SJS\Neos\MCP\Domain\MCP\Resource;
+use SJS\Flow\MCP\Domain\MCP\Resource;
 use SJS\Flow\MCP\FeatureSet\AbstractFeatureSet;
 
 #[Flow\Scope("singleton")]
@@ -39,7 +39,7 @@ class AssetFeatureSet extends AbstractFeatureSet
     }
 
     /**
-     * @return array<\SJS\Neos\MCP\Domain\MCP\Resource>
+     * @return array<\SJS\Flow\MCP\Domain\MCP\Resource>
      */
     public function resourcesList(?string $cursor = null): array
     {
@@ -54,6 +54,9 @@ class AssetFeatureSet extends AbstractFeatureSet
         return $resources;
     }
 
+    /**
+     * @return array<array{description: string, name: string, title: string, uriTemplate: string}>
+     */
     public function resourcesTemplatesList(): array
     {
         return [
@@ -128,7 +131,7 @@ class AssetFeatureSet extends AbstractFeatureSet
     }
 
     /**
-     * @return array<\SJS\Neos\MCP\Domain\MCP\Resource>
+     * @return array<\SJS\Flow\MCP\Domain\MCP\Resource>
      */
     public function resourcesRead(string $uri): array
     {
@@ -147,6 +150,9 @@ class AssetFeatureSet extends AbstractFeatureSet
         return [];
     }
 
+    /**
+     * @return array<string,mixed>
+     */
     protected function resolveUriAgainstTemplates(string $uri): ?array
     {
         $templates = $this->resourcesTemplatesList();
@@ -164,10 +170,20 @@ class AssetFeatureSet extends AbstractFeatureSet
         return null;
     }
 
+    /**
+     * @return string[]|null
+     */
     protected function matchUriToTemplate(string $uriTemplate, string $uri): ?array
     {
         $templatePath = parse_url($uriTemplate, PHP_URL_PATH);
+        if (!\is_string($templatePath)) {
+            throw new \InvalidArgumentException("Uri template could not be parsed");
+        }
+
         $uriPath = parse_url($uri, PHP_URL_PATH);
+        if (!\is_string($uriPath)) {
+            throw new \InvalidArgumentException("Uri could not be parsed");
+        }
 
         $templateSegments = explode('/', trim($templatePath, '/'));
         $uriSegments = explode('/', trim($uriPath, '/'));

@@ -36,6 +36,9 @@ class ListWorkspacesTool extends Tool
         );
     }
 
+    /**
+     * @param array<string,mixed> $input
+     */
     public function run(ActionRequest $actionRequest, array $input): Content
     {
         $siteDetection = SiteDetectionResult::fromRequest($actionRequest->getHttpRequest());
@@ -48,6 +51,10 @@ class ListWorkspacesTool extends Tool
                 $workspace->workspaceName
             );
 
+            if ($workspaceMetadata === null) {
+                continue;
+            }
+
             $workspaces[(string) $workspace->workspaceName] = [
                 'title' => $workspaceMetadata->title->value,
                 'description' => $workspaceMetadata->description->value,
@@ -56,6 +63,6 @@ class ListWorkspacesTool extends Tool
             ];
         }
 
-        return Content::structured($workspaces)->addText(json_encode($workspaces));
+        return Content::structuredWithFallback($workspaces);
     }
 }

@@ -41,6 +41,9 @@ class ListConfigurationTreeTool extends Tool
         );
     }
 
+    /**
+     * @param array<string,mixed> $input
+     */
     public function run(ActionRequest $actionRequest, array $input): Content
     {
         $type = $input['type'] ?? ConfigurationManager::CONFIGURATION_TYPE_SETTINGS;
@@ -60,9 +63,8 @@ class ListConfigurationTreeTool extends Tool
             return Content::text("No configuration found for type '{$type}'" . ($path ? " at path '{$path}'" : '') . '.');
         }
 
-        $encoded = json_encode($configuration, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        $result = \is_array($configuration) ? $configuration : ['_value' => $configuration];
 
-        return Content::structured(\is_array($configuration) ? $configuration : ['_value' => $configuration])
-            ->addText($encoded);
+        return Content::structuredWithFallback($result);
     }
 }

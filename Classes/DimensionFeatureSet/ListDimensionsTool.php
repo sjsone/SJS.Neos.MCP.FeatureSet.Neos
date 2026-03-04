@@ -31,6 +31,9 @@ class ListDimensionsTool extends Tool
         );
     }
 
+    /**
+     * @param array<string,mixed> $input
+     */
     public function run(ActionRequest $actionRequest, array $input): Content
     {
         $siteDetection = SiteDetectionResult::fromRequest($actionRequest->getHttpRequest());
@@ -54,6 +57,6 @@ class ListDimensionsTool extends Tool
             ];
         }
 
-        return Content::structured($dimensions)->addText(json_encode($dimensions));
+        return Content::structuredWithFallback($dimensions);
     }
 }

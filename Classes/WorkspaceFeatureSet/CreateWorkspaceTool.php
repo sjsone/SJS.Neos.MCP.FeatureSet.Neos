@@ -45,6 +45,11 @@ class CreateWorkspaceTool extends Tool
             )
         );
     }
+
+    /**
+     * @param array<string,mixed> $input
+     * @return array{message: string, status: string, workspace_name: string}
+     */
     public function run(ActionRequest $actionRequest, array $input)
     {
         $workspaceName = $input["name"];

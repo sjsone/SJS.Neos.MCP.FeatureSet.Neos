@@ -34,6 +34,9 @@ class PublishWorkspaceTool extends Tool
         );
     }
 
+    /**
+     * @param array<string,mixed> $input
+     */
     public function run(ActionRequest $actionRequest, array $input): Content
     {
         $workspaceName = $input['name'];

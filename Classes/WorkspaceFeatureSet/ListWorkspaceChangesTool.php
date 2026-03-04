@@ -38,6 +38,9 @@ class ListWorkspaceChangesTool extends Tool
         );
     }
 
+    /**
+     * @param array<string,mixed> $input
+     */
     public function run(ActionRequest $actionRequest, array $input): Content
     {
         // TODO: The Neos\Workspace\Ui\Controller\WorkspaceController does what should be done here as well. Generalize the code ideally
@@ -59,6 +62,7 @@ class ListWorkspaceChangesTool extends Tool
                 $change->changed => 'changed',
                 $change->moved => 'moved',
                 $change->deleted => 'deleted',
+                default => 'unknown'
             };
 
             $nodeAggregate = $contentGraph->findNodeAggregateById($change->nodeAggregateId);
@@ -78,7 +82,6 @@ class ListWorkspaceChangesTool extends Tool
             ];
         }
 
-        return Content::structured($result)
-            ->addText(json_encode($result));
+        return Content::structuredWithFallback($result);
     }
 }

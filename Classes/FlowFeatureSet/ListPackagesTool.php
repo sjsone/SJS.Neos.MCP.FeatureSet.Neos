@@ -40,6 +40,10 @@ class ListPackagesTool extends Tool
         );
     }
 
+    /**
+     * @param array<string,mixed> $input
+     * @return Tool\Content
+     */
     public function run(ActionRequest $actionRequest, array $input): Content
     {
         $typeFilter = $input['type'] ?? null;
@@ -71,7 +75,6 @@ class ListPackagesTool extends Tool
 
         ksort($result);
 
-        return Content::structured($result)
-            ->addText(json_encode($result));
+        return Content::structuredWithFallback($result);
     }
 }
