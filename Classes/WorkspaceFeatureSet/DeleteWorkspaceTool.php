@@ -43,7 +43,7 @@ class DeleteWorkspaceTool extends Tool
      * @param array<string,mixed> $input
      * @return array{message: string, status: string}
      */
-    public function run(ActionRequest $actionRequest, array $input)
+    public function run(ActionRequest $actionRequest, array $input): Tool\Content
     {
         $workspaceName = $this->retrieveName($input);
 
@@ -54,10 +54,10 @@ class DeleteWorkspaceTool extends Tool
             WorkspaceName::fromString($workspaceName)
         );
 
-        return [
+        return Tool\Content::structured([
             'status' => 'success',
             'message' => "Workspace '{$workspaceName}' deleted successfully",
-        ];
+        ]);
     }
 
     /**
