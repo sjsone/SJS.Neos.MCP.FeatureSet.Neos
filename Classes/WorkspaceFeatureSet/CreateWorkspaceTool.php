@@ -17,6 +17,7 @@ use Neos\Neos\FrontendRouting\SiteDetection\SiteDetectionResult;
 use Psr\Log\LoggerInterface;
 use SJS\Flow\MCP\Domain\MCP\Tool;
 use SJS\Flow\MCP\Domain\MCP\Tool\Annotations;
+use SJS\Flow\MCP\Domain\MCP\Tool\Content;
 use SJS\Flow\MCP\JsonSchema\ObjectSchema;
 use SJS\Flow\MCP\JsonSchema\StringSchema;
 
@@ -50,7 +51,7 @@ class CreateWorkspaceTool extends Tool
      * @param array<string,mixed> $input
      * @return array{message: string, status: string, workspace_name: string}
      */
-    public function run(ActionRequest $actionRequest, array $input)
+    public function run(ActionRequest $actionRequest, array $input): Tool\Content
     {
         $workspaceName = $input["name"];
         $workspaceTitle = $input["title"];
@@ -82,10 +83,10 @@ class CreateWorkspaceTool extends Tool
             $message .= " But the name has been changed to '{$uniqueWorkspaceName}' because {$workspaceName} already existed.";
         }
 
-        return [
+        return Content::structuredWithFallback([
             'status' => 'success',
             'message' => $message,
             'workspace_name' => (string) $uniqueWorkspaceName
-        ];
+        ]);
     }
 }
