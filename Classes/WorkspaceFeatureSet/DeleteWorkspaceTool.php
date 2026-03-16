@@ -12,6 +12,7 @@ use Neos\Neos\FrontendRouting\SiteDetection\SiteDetectionResult;
 use Psr\Log\LoggerInterface;
 use SJS\Flow\MCP\Domain\MCP\Tool;
 use SJS\Flow\MCP\Domain\MCP\Tool\Annotations;
+use SJS\Flow\MCP\Domain\MCP\Tool\Content;
 use SJS\Flow\MCP\JsonSchema\ObjectSchema;
 use SJS\Flow\MCP\JsonSchema\StringSchema;
 
@@ -41,9 +42,8 @@ class DeleteWorkspaceTool extends Tool
 
     /**
      * @param array<string,mixed> $input
-     * @return array{message: string, status: string}
      */
-    public function run(ActionRequest $actionRequest, array $input)
+    public function run(ActionRequest $actionRequest, array $input): Content
     {
         $workspaceName = $this->retrieveName($input);
 
@@ -54,10 +54,10 @@ class DeleteWorkspaceTool extends Tool
             WorkspaceName::fromString($workspaceName)
         );
 
-        return [
+        return Content::structuredWithFallback([
             'status' => 'success',
             'message' => "Workspace '{$workspaceName}' deleted successfully",
-        ];
+        ]);
     }
 
     /**
